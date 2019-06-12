@@ -7,17 +7,18 @@
         <div class="form-group col-md-6">
           <input class="form-control" name="firstName" #firstName="ngModel" [(ngModel)]="userService.selectedUser.firstName" placeholder="First Name"
             required>
-          <div class="validation-error" *ngIf="firstName.invalid && firstName.touched">This field is Required</div>
+          <div class="text-danger" *ngIf="firstName.invalid && firstName.touched">This field is Required</div>
         </div>
         <div class="form-group col-md-6">
           <input class="form-control" name="lastName" #lastName="ngModel" [(ngModel)]="userService.selectedUser.lastName" placeholder="Last Name"
             required>
-          <div class="validation-error" *ngIf="lastName.invalid && lastName.touched">This field is Required</div>
+          <div class="text-danger" *ngIf="lastName.invalid && lastName.touched">This field is Required</div>
         </div>
       </div>
       <div class="form-row">
         <div class="form-group col-md-6">
           <input class="form-control" name="emailId" #emailId="ngModel" [(ngModel)]="userService.selectedUser.emailId" placeholder="email id" required>
+          <div class="text-danger" *ngIf="lastName.invalid && lastName.touched">This field is Required</div>
         </div>
         <div class="form-group col-md-6">
           <input class="form-control" name="phoneNum" #emailId="ngModel" [(ngModel)]="userService.selectedUser.phoneNum" placeholder="phone number">
