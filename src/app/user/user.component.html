@@ -1,0 +1,71 @@
+<div class="row">
+  <div class="col-md-12">
+    <h2>User Registration</h2>
+    <form class="user-form" #userForm="ngForm" (ngSubmit)="onSubmit(userForm)">
+      <input type="hidden" name="id" #userId="ngModel" [(ngModel)]="userService.selectedUser.id">
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <input class="form-control" name="firstName" #firstName="ngModel" [(ngModel)]="userService.selectedUser.firstName" placeholder="First Name"
+            required>
+          <div class="validation-error" *ngIf="firstName.invalid && firstName.touched">This field is Required</div>
+        </div>
+        <div class="form-group col-md-6">
+          <input class="form-control" name="lastName" #lastName="ngModel" [(ngModel)]="userService.selectedUser.lastName" placeholder="Last Name"
+            required>
+          <div class="validation-error" *ngIf="lastName.invalid && lastName.touched">This field is Required</div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <input class="form-control" name="emailId" #emailId="ngModel" [(ngModel)]="userService.selectedUser.emailId" placeholder="email id" required>
+        </div>
+        <div class="form-group col-md-6">
+          <input class="form-control" name="phoneNum" #emailId="ngModel" [(ngModel)]="userService.selectedUser.phoneNum" placeholder="phone number">
+        </div>
+        <div class="form-group col-md-6">
+          <select class="form-control" name="userType" #userType="ngModel" [(ngModel)]="userService.selectedUser.userType">
+            <option *ngFor="let bt of userTypes" [ngValue]="bt">{{ bt }}</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-8">
+          <button type="submit" [disabled]="!userForm.valid" class="btn btn-lg btn-block btn-info">
+            <i class="fa fa-save"></i> Submit</button>
+        </div>
+        <div class="form-group col-md-4">
+          <button type="button" class="btn btn-lg btn-block btn-secondary" (click)="resetForm(userForm)">
+            <i class="fa fa-repeat"></i> Reset</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-sm table-hover">
+      <tr>
+        <th>User Name</th>
+        <th>Email Id</th>
+        <th>Phone Num</th>
+        <th>Business Type</th>
+        <th></th>
+      </tr>
+      <tr *ngFor="let user of userService.usersList">
+        <td>{{user.firstName}} -{{user.lastName}} </td>
+        <td>{{user.emailId}}</td>
+        <td>{{user.phoneNum}}</td>
+        <td>{{user.userType}}</td>
+        <td>
+          <a class="btn">
+            <i class="fa fa-pencil-square-o" (click)="editRecord(user)"></i>
+          </a>
+          <a class="btn text-danger" (click)="onDelete(user.id)">
+            <i class="fa fa-trash-o"></i>
+          </a>
+        </td>
+
+      </tr>
+    </table>
+  </div>
+</div>
